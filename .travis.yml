@@ -1,13 +1,17 @@
-sudo: required
+# sudo: required
+
+os: linux
 
 language: generic
+
+dist: xenial
 
 services:
   - docker
 
 before_install:
   - echo "start creating an image with dockerfile"
-  - docker build -t yeongbba/docker-react-app -f Dockerfile.dev ./
+  - docker build -t yeongbba/docker-react-app -f Dockerfile.dev ./docker-react-app-master
 
 script:
   - docker run -e CI=true yeongbba/docker-react-app npm run test -- --coverage
